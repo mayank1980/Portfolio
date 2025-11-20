@@ -9,11 +9,8 @@ import {
   FaReact,
   FaTools,
 } from "react-icons/fa";
-// Importing specific icons for Flutter and Django for better representation
 import { SiFlutter, SiDjango } from "react-icons/si";
 import Header from "../components/Header";
-
-// --- ANIMATION VARIANTS (Consistent with About page for a seamless feel) ---
 
 const smoothSpring = {
   type: "spring",
@@ -47,8 +44,6 @@ const listItemVariants = {
   visible: { opacity: 1, x: 0, transition: { ...smoothSpring, duration: 0.8 } },
 };
 
-// --- Main Skills Page Component ---
-
 const Skills = () => {
   return (
     <>
@@ -60,14 +55,16 @@ const Skills = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* LEFT COLUMN: Core Competencies */}
+        {/* LEFT COLUMN */}
         <motion.div
           variants={columnVariants}
-          className="col-span-2 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-10 flex flex-col gap-10 text-[#DBC2A6]"
+          className="w-full lg:w-auto lg:col-span-2 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-6 lg:p-10 flex flex-col gap-8 lg:gap-10 text-[#DBC2A6]"
         >
           <section>
-            <h2 className="text-6xl italic mb-8">Core Competencies</h2>
-            <p className="font-['Lato'] text-lg leading-relaxed mb-8">
+            <h2 className="text-4xl lg:text-6xl italic mb-8">
+              Core Competencies
+            </h2>
+            <p className="font-['Lato'] text-base lg:text-lg leading-relaxed mb-8">
               My expertise is centered around creating modern, responsive, and
               performant applications. I approach every project with a focus on
               clean architecture and a seamless user experience.
@@ -79,10 +76,10 @@ const Skills = () => {
               className="space-y-8"
             >
               <motion.li variants={listItemVariants}>
-                <h3 className="font-serif font-bold text-2xl mb-2">
+                <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2">
                   Front-End Development
                 </h3>
-                <p className="font-['Lato'] text-lg leading-relaxed">
+                <p className="font-['Lato'] text-base lg:text-lg leading-relaxed">
                   I build dynamic user interfaces with React.js, managing
                   complex state with Redux. I am proficient in modern
                   JavaScript, TypeScript, and creating pixel-perfect layouts
@@ -90,10 +87,10 @@ const Skills = () => {
                 </p>
               </motion.li>
               <motion.li variants={listItemVariants}>
-                <h3 className="font-serif font-bold text-2xl mb-2">
+                <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2">
                   Cross-Platform & Mobile
                 </h3>
-                <p className="font-['Lato'] text-lg leading-relaxed">
+                <p className="font-['Lato'] text-base lg:text-lg leading-relaxed">
                   Using Flutter and Dart, I create natively compiled
                   applications for mobile from a single codebase, ensuring
                   consistent performance and design across both iOS and Android.
@@ -103,13 +100,15 @@ const Skills = () => {
           </section>
         </motion.div>
 
-        {/* MIDDLE COLUMN: Tools & Design */}
+        {/* MIDDLE COLUMN */}
         <motion.div
           variants={columnVariants}
-          className="col-start-3 row-start-2 row-span-6 bg-[#99744A] rounded-lg p-10 text-white flex flex-col gap-10"
+          className="w-full lg:w-auto lg:col-start-3 lg:row-start-2 lg:row-span-6 bg-[#99744A] rounded-lg p-6 lg:p-10 text-white flex flex-col gap-8 lg:gap-10"
         >
           <section>
-            <h2 className="text-6xl italic mb-8">Tools & Workflow</h2>
+            <h2 className="text-4xl lg:text-6xl italic mb-8">
+              Tools & Workflow
+            </h2>
             <motion.div
               variants={listContainerVariants}
               initial="hidden"
@@ -117,7 +116,7 @@ const Skills = () => {
               className="space-y-6"
             >
               <motion.div variants={listItemVariants}>
-                <h3 className="font-serif font-bold text-2xl mb-2 flex items-center gap-3">
+                <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2 flex items-center gap-3">
                   <FaTools /> Version Control & DevOps
                 </h3>
                 <p className="font-['Lato'] text-base leading-relaxed pl-8">
@@ -125,7 +124,7 @@ const Skills = () => {
                 </p>
               </motion.div>
               <motion.div variants={listItemVariants}>
-                <h3 className="font-serif font-bold text-2xl mb-2 flex items-center gap-3">
+                <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2 flex items-center gap-3">
                   <FaPalette /> Design & Prototyping
                 </h3>
                 <p className="font-['Lato'] text-base leading-relaxed pl-8">
@@ -140,7 +139,7 @@ const Skills = () => {
         {/* BACK TO ABOUT LINK */}
         <motion.div
           variants={columnVariants}
-          className="col-start-3 row-start-8 flex items-center justify-center"
+          className="w-full lg:w-auto lg:col-start-3 lg:row-start-8 flex items-center justify-center py-4 lg:py-0"
         >
           <Link
             to="/about"
@@ -151,21 +150,21 @@ const Skills = () => {
           </Link>
         </motion.div>
 
-        {/* RIGHT COLUMN: Skill Proficiency */}
+        {/* RIGHT COLUMN */}
         <motion.div
           variants={columnVariants}
-          className="col-start-4 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-10 text-[#DBC2A6]"
+          className="w-full lg:w-auto lg:col-start-4 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-6 lg:p-10 text-[#DBC2A6]"
         >
-          <h2 className="text-6xl italic mb-10">Proficiency</h2>
+          <h2 className="text-4xl lg:text-6xl italic mb-10">Proficiency</h2>
           <motion.div
             variants={listContainerVariants}
             initial="hidden"
             animate="visible"
             className="space-y-8"
           >
-            {/* --- React.js with Icon --- */}
+            {/* --- React.js --- */}
             <motion.div variants={listItemVariants}>
-              <h3 className="font-serif font-bold text-2xl mb-2 flex items-center gap-3">
+              <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2 flex items-center gap-3">
                 <FaReact /> <span>React.js</span>
               </h3>
               <div className="w-full bg-[#DBC2A6]/10 rounded-full h-2.5">
@@ -178,9 +177,9 @@ const Skills = () => {
               </div>
             </motion.div>
 
-            {/* --- Flutter with Icon --- */}
+            {/* --- Flutter --- */}
             <motion.div variants={listItemVariants}>
-              <h3 className="font-serif font-bold text-2xl mb-2 flex items-center gap-3">
+              <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2 flex items-center gap-3">
                 <SiFlutter /> <span>Flutter</span>
               </h3>
               <div className="w-full bg-[#DBC2A6]/10 rounded-full h-2.5">
@@ -193,9 +192,9 @@ const Skills = () => {
               </div>
             </motion.div>
 
-            {/* --- Node.js with Icon --- */}
+            {/* --- Node.js --- */}
             <motion.div variants={listItemVariants}>
-              <h3 className="font-serif font-bold text-2xl mb-2 flex items-center gap-3">
+              <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2 flex items-center gap-3">
                 <FaNodeJs /> <span>Node.js</span>
               </h3>
               <div className="w-full bg-[#DBC2A6]/10 rounded-full h-2.5">
@@ -208,9 +207,9 @@ const Skills = () => {
               </div>
             </motion.div>
 
-            {/* --- Databases with Icon --- */}
+            {/* --- Databases --- */}
             <motion.div variants={listItemVariants}>
-              <h3 className="font-serif font-bold text-2xl mb-2 flex items-center gap-3">
+              <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2 flex items-center gap-3">
                 <FaDatabase /> <span>Databases (SQL/NoSQL)</span>
               </h3>
               <div className="w-full bg-[#DBC2A6]/10 rounded-full h-2.5">
@@ -223,9 +222,9 @@ const Skills = () => {
               </div>
             </motion.div>
 
-            {/* --- Django with Icon --- */}
+            {/* --- Django --- */}
             <motion.div variants={listItemVariants}>
-              <h3 className="font-serif font-bold text-2xl mb-2 flex items-center gap-3">
+              <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2 flex items-center gap-3">
                 <SiDjango /> <span>Django</span>
               </h3>
               <div className="w-full bg-[#DBC2A6]/10 rounded-full h-2.5">

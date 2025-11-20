@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import React, { useState } from "react"; // Import useState
+import React, { useState } from "react";
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -11,7 +11,6 @@ import {
 } from "react-icons/fa";
 import Header from "../components/Header";
 
-// --- ANIMATION VARIANTS (Consistent) ---
 const smoothSpring = {
   type: "spring",
   stiffness: 100,
@@ -37,39 +36,18 @@ const listItemVariants = {
   visible: { opacity: 1, x: 0, transition: { ...smoothSpring, duration: 0.8 } },
 };
 
-// --- THE MAIN CONTACT PAGE COMPONENT ---
 const Contact = () => {
-  // State to hold the form input values
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  // Function to handle the form submission
   const handleSendMessage = (e) => {
-    e.preventDefault(); // Prevent the default browser action for the form
-
+    e.preventDefault();
     const recipientEmail = "mayankmehra6497678@gmail.com";
     const subject = `Job Opportunity Inquiry from ${name}`;
-    const body = `
-Hello Mayank,
-
-My name is ${name}.
-
-I came across your portfolio and I'm impressed with your work. I would like to discuss a potential job opportunity with you.
-
-[Please add the details of the job offer or inquiry here]
-
-I look forward to hearing from you. You can reach me at: ${email}.
-
-Best regards,
-${name}
-    `;
-
-    // Create the mailto link and encode the subject and body for URL safety
+    const body = `Hello Mayank,\n\nMy name is ${name}.\n\nI came across your portfolio...`;
     const mailtoLink = `mailto:${recipientEmail}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
-
-    // Open the user's default email client
     window.location.href = mailtoLink;
   };
 
@@ -86,11 +64,13 @@ ${name}
         {/* LEFT COLUMN: Main Contact Info */}
         <motion.div
           variants={columnVariants}
-          className="col-span-2 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-10 flex flex-col gap-10 text-[#DBC2A6]"
+          className="w-full lg:w-auto lg:col-span-2 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-6 lg:p-10 flex flex-col gap-8 lg:gap-10 text-[#DBC2A6]"
         >
           <section>
-            <h2 className="text-7xl italic mb-8">Get in Touch</h2>
-            <p className="font-['Lato'] text-lg leading-relaxed mb-8">
+            <h2 className="text-5xl lg:text-7xl italic mb-6 lg:mb-8">
+              Get in Touch
+            </h2>
+            <p className="font-['Lato'] text-base lg:text-lg leading-relaxed mb-6 lg:mb-8">
               I'm currently available for freelance projects and open to
               discussing new opportunities. Whether you have a question or just
               want to say hi, feel free to reach out. I'll do my best to get
@@ -99,19 +79,18 @@ ${name}
             <motion.ul
               initial="hidden"
               animate="visible"
-              className="space-y-6"
+              className="space-y-4 lg:space-y-6"
               variants={pageContainerVariants}
             >
               <motion.li
                 variants={listItemVariants}
-                className="flex items-center gap-4 font-['Lato'] text-lg"
+                className="flex items-center gap-4 font-['Lato'] text-base lg:text-lg"
               >
-                <FaPhoneAlt />
-                <span>9654238353</span>
+                <FaPhoneAlt /> <span>9654238353</span>
               </motion.li>
               <motion.li
                 variants={listItemVariants}
-                className="flex items-center gap-4 font-['Lato'] text-lg"
+                className="flex items-center gap-4 font-['Lato'] text-base lg:text-lg break-all"
               >
                 <FaEnvelope />
                 <a
@@ -123,10 +102,9 @@ ${name}
               </motion.li>
               <motion.li
                 variants={listItemVariants}
-                className="flex items-center gap-4 font-['Lato'] text-lg"
+                className="flex items-center gap-4 font-['Lato'] text-base lg:text-lg"
               >
-                <FaMapMarkerAlt />
-                <span>Noida, IN</span>
+                <FaMapMarkerAlt /> <span>Noida, IN</span>
               </motion.li>
             </motion.ul>
           </section>
@@ -135,14 +113,15 @@ ${name}
         {/* MIDDLE COLUMN: Contact Form */}
         <motion.div
           variants={columnVariants}
-          className="col-start-3 row-start-2 row-span-6 bg-[#99744A] rounded-lg p-10 text-white flex flex-col"
+          className="w-full lg:w-auto lg:col-start-3 lg:row-start-2 lg:row-span-6 bg-[#99744A] rounded-lg p-6 lg:p-10 text-white flex flex-col"
         >
           <section>
-            <h2 className="text-6xl italic mb-8">Send a Message</h2>
-            {/* The form now calls handleSendMessage on submission */}
+            <h2 className="text-4xl lg:text-6xl italic mb-6 lg:mb-8">
+              Send a Message
+            </h2>
             <form
               onSubmit={handleSendMessage}
-              className="space-y-6 font-['Lato']"
+              className="space-y-4 lg:space-y-6 font-['Lato']"
             >
               <div>
                 <label
@@ -188,10 +167,10 @@ ${name}
           </section>
         </motion.div>
 
-        {/* NEW LINK SECTION: Below the form */}
+        {/* NEW LINK SECTION */}
         <motion.div
           variants={columnVariants}
-          className="col-start-3 row-start-8 flex items-center justify-center"
+          className="w-full lg:w-auto lg:col-start-3 lg:row-start-8 flex items-center justify-center py-4 lg:py-0"
         >
           <Link
             to="/projects"
@@ -205,16 +184,18 @@ ${name}
         {/* RIGHT COLUMN: Social Links */}
         <motion.div
           variants={columnVariants}
-          className="col-start-4 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-10 text-[#DBC2A6] flex flex-col justify-center items-center"
+          className="w-full lg:w-auto lg:col-start-4 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-6 lg:p-10 text-[#DBC2A6] flex flex-col justify-center items-center"
         >
-          <h2 className="text-6xl italic mb-10 text-center">Connect With Me</h2>
-          <div className="flex flex-col gap-8 w-full">
+          <h2 className="text-4xl lg:text-6xl italic mb-8 lg:mb-10 text-center">
+            Connect With Me
+          </h2>
+          <div className="flex flex-col gap-6 lg:gap-8 w-full">
             <motion.a
               whileHover={{ scale: 1.05, x: 5 }}
               href="https://github.com/mayank1980"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 text-2xl font-serif font-bold p-4 rounded-md border border-[#DBC2A6]/20 hover:bg-[#DBC2A6]/10 transition-colors"
+              className="flex items-center gap-4 text-xl lg:text-2xl font-serif font-bold p-4 rounded-md border border-[#DBC2A6]/20 hover:bg-[#DBC2A6]/10 transition-colors"
             >
               <FaGithub /> GitHub
             </motion.a>
@@ -223,7 +204,7 @@ ${name}
               href="https://linkedin.com/in/mayankmehra"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 text-2xl font-serif font-bold p-4 rounded-md border border-[#DBC2A6]/20 hover:bg-[#DBC2A6]/10 transition-colors"
+              className="flex items-center gap-4 text-xl lg:text-2xl font-serif font-bold p-4 rounded-md border border-[#DBC2A6]/20 hover:bg-[#DBC2A6]/10 transition-colors"
             >
               <FaLinkedin /> LinkedIn
             </motion.a>

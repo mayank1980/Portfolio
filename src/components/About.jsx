@@ -14,14 +14,11 @@ import {
 } from "react-icons/fa";
 import Header from "../components/Header";
 
-// --- ADVANCED ANIMATION & INTERACTION ---
-
-// Ultra-smooth spring physics for page load animations
 const smoothSpring = {
   type: "spring",
-  stiffness: 100, // Lower stiffness for a softer feel
-  damping: 30, // Higher damping to prevent oscillation
-  mass: 1.5, // Higher mass for a weightier feel
+  stiffness: 100,
+  damping: 30,
+  mass: 1.5,
 };
 
 const pageContainerVariants = {
@@ -44,9 +41,6 @@ const listItemVariants = {
   visible: { opacity: 1, x: 0, transition: { ...smoothSpring, duration: 0.8 } },
 };
 
-// --- Reusable Component with "Magnetic" Addon ---
-
-// ADDON: A social link with a "magnetic" icon effect
 const MagneticLink = ({ children, href }) => {
   const ref = useRef(null);
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
@@ -82,8 +76,6 @@ const MagneticLink = ({ children, href }) => {
   );
 };
 
-// --- The Main About Component ---
-
 const About = () => {
   return (
     <>
@@ -98,13 +90,14 @@ const About = () => {
         {/* LEFT COLUMN */}
         <motion.div
           variants={columnVariants}
-          className="col-span-2 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-10 flex flex-col gap-10 text-[#DBC2A6]"
+          // RESPONSIVE FIX: Stack order, full width, responsive padding/text
+          className="w-full lg:w-auto lg:col-span-2 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-6 lg:p-10 flex flex-col gap-8 lg:gap-10 text-[#DBC2A6]"
         >
-          {/* My Mission Section */}
           <section>
-            <h2 className="text-6xl italic mb-8">My Mission</h2>
-            {/* FONT SIZE INCREASED HERE */}
-            <p className="font-['Lato'] text-lg leading-relaxed">
+            <h2 className="text-4xl lg:text-6xl italic mb-4 lg:mb-8">
+              My Mission
+            </h2>
+            <p className="font-['Lato'] text-base lg:text-lg leading-relaxed">
               As a developer, I am driven by the challenge of transforming
               complex problems into beautiful, intuitive, and functional digital
               experiences. With a year of focused experience in the React and
@@ -113,14 +106,15 @@ const About = () => {
             </p>
           </section>
 
-          {/* Experience Section */}
           <section>
-            <h2 className="text-6xl italic mb-8">Experience</h2>
+            <h2 className="text-4xl lg:text-6xl italic mb-4 lg:mb-8">
+              Experience
+            </h2>
             <div>
-              <h3 className="font-serif font-bold text-2xl">
+              <h3 className="font-serif font-bold text-xl lg:text-2xl">
                 Front End Developer, RegenSportz
               </h3>
-              <div className="flex items-center gap-6 text-sm text-[#DBC2A6]/70 mt-3 mb-5 font-['Lato']">
+              <div className="flex flex-wrap items-center gap-4 lg:gap-6 text-sm text-[#DBC2A6]/70 mt-3 mb-5 font-['Lato']">
                 <span className="flex items-center gap-2">
                   <FaCalendarAlt /> NOV 2024 - OCT 2025
                 </span>
@@ -128,12 +122,11 @@ const About = () => {
                   <FaMapMarkerAlt /> NOIDA, INDIA
                 </span>
               </div>
-              {/* FONT SIZE INCREASED HERE */}
               <motion.ul
                 variants={listContainerVariants}
                 initial="hidden"
                 animate="visible"
-                className="font-['Lato'] text-lg leading-relaxed space-y-3 list-disc pl-5"
+                className="font-['Lato'] text-base lg:text-lg leading-relaxed space-y-3 list-disc pl-5"
               >
                 <motion.li variants={listItemVariants}>
                   Engineered responsive components, accelerating development by
@@ -151,14 +144,16 @@ const About = () => {
         {/* MIDDLE COLUMN */}
         <motion.div
           variants={columnVariants}
-          className="col-start-3 row-start-2 row-span-6 bg-[#99744A] rounded-lg p-10 text-white flex flex-col justify-between"
+          className="w-full lg:w-auto lg:col-start-3 lg:row-start-2 lg:row-span-6 bg-[#99744A] rounded-lg p-6 lg:p-10 text-white flex flex-col gap-8 lg:gap-0 justify-between"
         >
           <section>
-            <h2 className="text-6xl italic mb-8">Education</h2>
-            <h3 className="font-serif font-bold text-2xl">
+            <h2 className="text-4xl lg:text-6xl italic mb-4 lg:mb-8">
+              Education
+            </h2>
+            <h3 className="font-serif font-bold text-xl lg:text-2xl">
               B.Sc. in Computer Science
             </h3>
-            <p className="text-base font-['Lato'] mt-2">
+            <p className="text-sm lg:text-base font-['Lato'] mt-2">
               IIMT COLLEGE OF SCIENCE AND TECHNOLOGY
             </p>
             <div className="flex items-center gap-2 text-sm text-white/70 my-2 font-['Lato']">
@@ -166,10 +161,12 @@ const About = () => {
             </div>
           </section>
           <section>
-            <h2 className="text-6xl italic mb-8">Contact</h2>
+            <h2 className="text-4xl lg:text-6xl italic mb-4 lg:mb-8">
+              Contact
+            </h2>
             <div className="font-['Lato'] text-base space-y-2">
               <p>Phone: 9654238353</p>
-              <p>Email: mayankmehra6497678@gmail.com</p>
+              <p className="break-words">Email: mayankmehra6497678@gmail.com</p>
             </div>
           </section>
         </motion.div>
@@ -177,7 +174,7 @@ const About = () => {
         {/* MAGNETIC SOCIAL LINKS */}
         <motion.div
           variants={columnVariants}
-          className="col-start-3 row-start-8 flex items-center justify-center gap-8 font-['Lato'] uppercase tracking-widest text-sm text-[#414A37]"
+          className="w-full lg:w-auto lg:col-start-3 lg:row-start-8 flex items-center justify-center gap-8 font-['Lato'] uppercase tracking-widest text-sm text-[#414A37] py-4 lg:py-0"
         >
           <MagneticLink href="https://github.com/mayank1980">
             <FaGithub /> GitHub
@@ -190,24 +187,25 @@ const About = () => {
         {/* RIGHT COLUMN */}
         <motion.div
           variants={columnVariants}
-          className="col-start-4 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-10 text-[#DBC2A6] flex flex-col justify-between"
+          className="w-full lg:w-auto lg:col-start-4 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-6 lg:p-10 text-[#DBC2A6] flex flex-col justify-between"
         >
           <div>
-            <h2 className="text-6xl italic mb-10">Technical Skills</h2>
+            <h2 className="text-4xl lg:text-6xl italic mb-8 lg:mb-10">
+              Technical Skills
+            </h2>
             <motion.div
               variants={listContainerVariants}
               initial="hidden"
               animate="visible"
               className="space-y-6"
             >
-              {/* Skill Items */}
               <motion.div
                 variants={listItemVariants}
                 className="flex items-start gap-4"
               >
-                <FaCode className="text-lg text-[#DBC2A6]/70 mt-1" />
+                <FaCode className="text-lg text-[#DBC2A6]/70 mt-1 shrink-0" />
                 <div>
-                  <h3 className="text-xl font-bold mb-1">
+                  <h3 className="text-lg lg:text-xl font-bold mb-1">
                     Front-End Development
                   </h3>
                   <p className="font-['Lato'] text-sm text-[#DBC2A6]/80">
@@ -219,9 +217,9 @@ const About = () => {
                 variants={listItemVariants}
                 className="flex items-start gap-4"
               >
-                <FaMobileAlt className="text-lg text-[#DBC2A6]/70 mt-1" />
+                <FaMobileAlt className="text-lg text-[#DBC2A6]/70 mt-1 shrink-0" />
                 <div>
-                  <h3 className="text-xl font-bold mb-1">
+                  <h3 className="text-lg lg:text-xl font-bold mb-1">
                     Cross-Platform & Mobile
                   </h3>
                   <p className="font-['Lato'] text-sm text-[#DBC2A6]/80">
@@ -233,9 +231,11 @@ const About = () => {
                 variants={listItemVariants}
                 className="flex items-start gap-4"
               >
-                <FaServer className="text-lg text-[#DBC2A6]/70 mt-1" />
+                <FaServer className="text-lg text-[#DBC2A6]/70 mt-1 shrink-0" />
                 <div>
-                  <h3 className="text-xl font-bold mb-1">Backend & APIs</h3>
+                  <h3 className="text-lg lg:text-xl font-bold mb-1">
+                    Backend & APIs
+                  </h3>
                   <p className="font-['Lato'] text-sm text-[#DBC2A6]/80">
                     Node.js, Django, RESTful APIs...
                   </p>
@@ -245,9 +245,11 @@ const About = () => {
                 variants={listItemVariants}
                 className="flex items-start gap-4"
               >
-                <FaDatabase className="text-lg text-[#DBC2A6]/70 mt-1" />
+                <FaDatabase className="text-lg text-[#DBC2A6]/70 mt-1 shrink-0" />
                 <div>
-                  <h3 className="text-xl font-bold mb-1">Databases</h3>
+                  <h3 className="text-lg lg:text-xl font-bold mb-1">
+                    Databases
+                  </h3>
                   <p className="font-['Lato'] text-sm text-[#DBC2A6]/80">
                     MongoDB, MySQL, PostgreSQL
                   </p>

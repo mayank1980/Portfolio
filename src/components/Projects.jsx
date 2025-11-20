@@ -11,26 +11,23 @@ import {
 } from "react-icons/fa";
 import Header from "../components/Header";
 
-// --- ANIMATION VARIANTS (CORRECTED FOR A SMOOTH, CRASH-FREE ENTRANCE) ---
-
 const pageContainerVariants = {
-  hidden: {}, // No initial animation on the container itself
+  hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1, // Stagger children for a soft, sequential effect
+      staggerChildren: 0.1,
     },
   },
 };
 
-// UPDATED: Replaced the faulty ease value with a valid and professional one
 const columnVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8, // Slightly longer duration for a more graceful feel
-      ease: "easeInOut", // THIS LINE IS THE FIX - a standard, smooth easing function
+      duration: 0.8,
+      ease: "easeInOut",
     },
   },
 };
@@ -47,14 +44,11 @@ const listItemVariants = {
   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-// Reusable component for technology tags
 const TechTag = ({ children }) => (
-  <div className="bg-[#DBC2A6]/10 rounded-md px-3 py-1 font-['Lato'] text-xs uppercase tracking-wider">
+  <div className="bg-[#DBC2A6]/10 rounded-md px-3 py-1 font-['Lato'] text-[10px] lg:text-xs uppercase tracking-wider whitespace-nowrap">
     {children}
   </div>
 );
-
-// --- THE MAIN PROJECTS PAGE COMPONENT ---
 
 const Projects = () => {
   return (
@@ -70,14 +64,14 @@ const Projects = () => {
         {/* LEFT COLUMN: Unisys & Confidential Projects */}
         <motion.div
           variants={columnVariants}
-          className="col-span-2 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-10 flex flex-col justify-between text-[#DBC2A6]"
+          className="w-full lg:w-auto lg:col-span-2 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-6 lg:p-10 flex flex-col justify-between text-[#DBC2A6] gap-8 lg:gap-0"
         >
           {/* Unisys Project Section */}
           <section>
-            <h2 className="text-6xl italic mb-4 flex items-center gap-4">
+            <h2 className="text-4xl lg:text-6xl italic mb-4 flex items-center gap-4">
               <FaUniversity /> Unisys
             </h2>
-            <h3 className="font-serif font-bold text-2xl mb-2">
+            <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2">
               University Management System
             </h3>
             <p className="font-['Lato'] text-base leading-relaxed mb-4">
@@ -125,12 +119,12 @@ const Projects = () => {
           </section>
 
           {/* Confidential Project Section */}
-          <section className="text-center opacity-40">
-            <h2 className="text-7xl italic flex items-center justify-center gap-4">
+          <section className="text-center opacity-40 mt-8 lg:mt-0">
+            <h2 className="text-4xl lg:text-7xl italic flex items-center justify-center gap-4">
               <FaLock />
               Confidential
             </h2>
-            <h3 className="font-serif font-bold text-2xl mt-2">
+            <h3 className="font-serif font-bold text-xl lg:text-2xl mt-2">
               Enterprise Applications
             </h3>
           </section>
@@ -139,13 +133,13 @@ const Projects = () => {
         {/* MIDDLE COLUMN: Taalif Project */}
         <motion.div
           variants={columnVariants}
-          className="col-start-3 row-start-2 row-span-6 bg-[#99744A] rounded-lg p-10 text-white flex flex-col"
+          className="w-full lg:w-auto lg:col-start-3 lg:row-start-2 lg:row-span-6 bg-[#99744A] rounded-lg p-6 lg:p-10 text-white flex flex-col"
         >
           <section>
-            <h2 className="text-6xl italic mb-4 flex items-center gap-4">
+            <h2 className="text-4xl lg:text-6xl italic mb-4 flex items-center gap-4">
               <FaBookOpen /> Taalif
             </h2>
-            <h3 className="font-serif font-bold text-2xl mb-2">
+            <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2">
               Book Author Management
             </h3>
             <p className="font-['Lato'] text-base leading-relaxed mb-4">
@@ -173,7 +167,7 @@ const Projects = () => {
         {/* BACK TO ABOUT LINK */}
         <motion.div
           variants={columnVariants}
-          className="col-start-3 row-start-8 flex items-center justify-center"
+          className="w-full lg:w-auto lg:col-start-3 lg:row-start-8 flex items-center justify-center py-4 lg:py-0"
         >
           <Link
             to="/about"
@@ -187,13 +181,13 @@ const Projects = () => {
         {/* RIGHT COLUMN: Player Scouting App */}
         <motion.div
           variants={columnVariants}
-          className="col-start-4 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-10 text-[#DBC2A6]"
+          className="w-full lg:w-auto lg:col-start-4 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-6 lg:p-10 text-[#DBC2A6]"
         >
           <section>
-            <h2 className="text-6xl italic mb-4 flex items-center gap-4">
+            <h2 className="text-4xl lg:text-6xl italic mb-4 flex items-center gap-4">
               <FaRunning /> Play Pulse
             </h2>
-            <h3 className="font-serif font-bold text-2xl mb-2">
+            <h3 className="font-serif font-bold text-xl lg:text-2xl mb-2">
               Player Scouting App
             </h3>
             <p className="font-['Lato'] text-base leading-relaxed mb-6">

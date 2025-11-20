@@ -7,8 +7,8 @@ import Header from "./Header";
 import manPortrait from "../assets/man-portrait.png";
 import aside from "../assets/aside-image.png";
 
-// Animation variants (no changes needed)
-const baseTransition = { type: "spring", damping: 20, stiffness: 90 };
+// Animation variants
+const baseTransition = { type: "spring", damping: 25, stiffness: 80 };
 const fromLeftVariants = {
   hidden: { opacity: 0, x: -30 },
   visible: { opacity: 1, x: 0, transition: baseTransition },
@@ -54,45 +54,54 @@ const coreServices = [
 ];
 
 const Portfolio = () => {
-  // 1. Initialize state by checking sessionStorage first.
-  // If the 'animationShown' flag exists, the grid is visible immediately.
   const [isGridVisible, setIsGridVisible] = useState(
     !!sessionStorage.getItem("hasInitialAnimationShown")
   );
 
   useEffect(() => {
-    // 2. Only run the animation timer if the grid isn't already visible.
     if (!isGridVisible) {
       const timer = setTimeout(() => {
         setIsGridVisible(true);
-        // 3. Set a flag in sessionStorage so this doesn't run again during the session.
         sessionStorage.setItem("hasInitialAnimationShown", "true");
       }, 1500);
 
-      // Cleanup function to prevent memory leaks
       return () => clearTimeout(timer);
     }
-  }, [isGridVisible]); // The effect depends on isGridVisible
+  }, [isGridVisible]);
+
+  const layoutTransition = {
+    type: "spring",
+    stiffness: 70,
+    damping: 25,
+    mass: 1,
+  };
 
   return (
     <>
-      {/* HEADER IS RENDERED ONLY IN THE FINAL STATE */}
+      {/* HEADER */}
       <AnimatePresence>{isGridVisible && <Header />}</AnimatePresence>
 
       {/* THE MOVING PORTRAIT */}
       <motion.div
         layout
-        transition={{ type: "spring", stiffness: 80, damping: 20, mass: 1 }}
+        initial={false}
+        transition={layoutTransition}
+        // FIX APPLIED HERE:
+        // 1. Mobile: `h-80` (Fixed height, looks good on mobile).
+        // 2. Desktop: `lg:h-auto` (Unset fixed height) + `lg:aspect-[7/10]`.
+        //    This FORCES the tall rectangular shape on desktop, ignoring grid row height limits.
         className={`
           ${
             isGridVisible
-              ? "col-start-3 row-start-2 row-span-4"
+              ? "relative w-full h-80 lg:h-auto lg:w-full lg:aspect-[7/10] lg:col-start-3 lg:row-start-2 lg:row-span-4"
               : "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-80"
           }
-          bg-[#99744A] rounded-lg overflow-hidden aspect-7/10 z-10
+          bg-[#99744A] rounded-lg overflow-hidden z-10 shadow-xl mx-auto lg:mx-0
         `}
       >
-        <img
+        <motion.img
+          layout
+          transition={layoutTransition}
           src={manPortrait}
           alt="Portrait of Mayank Mehra"
           className="w-full h-full object-cover"
@@ -106,14 +115,14 @@ const Portfolio = () => {
             className="contents"
             initial="hidden"
             animate="visible"
-            transition={{ delayChildren: 0.45, staggerChildren: 0.1 }}
+            transition={{ delayChildren: 0.5, staggerChildren: 0.1 }}
           >
             {/* Main Headline */}
             <motion.div
               variants={fromLeftVariants}
-              className="col-span-2 row-span-3 row-start-2 bg-[#414A37] rounded-lg p-8 flex flex-col justify-center"
+              className="w-full lg:w-auto lg:col-span-2 lg:row-span-3 lg:row-start-2 bg-[#414A37] rounded-lg p-6 lg:p-8 flex flex-col justify-center"
             >
-              <h2 className="text-[#DBC2A6] text-6xl font-bold leading-tight">
+              <h2 className="text-[#DBC2A6] text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Building beautiful & <br /> functional digital <br /> products.
               </h2>
             </motion.div>
@@ -121,7 +130,7 @@ const Portfolio = () => {
             {/* Core Services */}
             <motion.div
               variants={fromRightVariants}
-              className="col-start-4 row-start-2 row-span-7 bg-[#414A37] rounded-lg p-4 flex flex-col"
+              className="w-full lg:w-auto lg:col-start-4 lg:row-start-2 lg:row-span-7 bg-[#414A37] rounded-lg p-4 flex flex-col"
             >
               <div className="p-2">
                 <p className="text-[#DBC2A6] font-bold text-lg">
@@ -135,7 +144,7 @@ const Portfolio = () => {
                   />
                 </div>
               </div>
-              <div className="mt-6 grow flex flex-col justify-around px-2">
+              <div className="mt-6 grow flex flex-col justify-around px-2 gap-4 lg:gap-0">
                 {coreServices.map((service) => (
                   <div
                     key={service.title}
@@ -155,7 +164,7 @@ const Portfolio = () => {
             {/* My Philosophy */}
             <motion.div
               variants={fromLeftVariants}
-              className="col-span-2 row-start-5 row-span-2 bg-[#414A37] rounded-lg p-8 flex flex-col justify-center"
+              className="w-full lg:w-auto lg:col-span-2 lg:row-start-5 lg:row-span-2 bg-[#414A37] rounded-lg p-6 lg:p-8 flex flex-col justify-center"
             >
               <h3 className="text-[#DBC2A6] font-bold text-xl mb-4 italic">
                 My Philosophy
@@ -168,14 +177,17 @@ const Portfolio = () => {
             </motion.div>
 
             {/* Contact CTA */}
-            <Link to="/contact" className="col-span-2 row-start-7 row-span-2">
+            <Link
+              to="/contact"
+              className="w-full lg:w-auto lg:col-span-2 lg:row-start-7 lg:row-span-2"
+            >
               <motion.div
                 variants={fromLeftVariants}
-                className="w-full h-full bg-[#414A37] rounded-lg flex items-center justify-center relative group cursor-pointer"
+                className="w-full h-32 lg:h-full bg-[#414A37] rounded-lg flex items-center justify-center relative group cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-10 w-10 text-[#DBC2A6]/50 absolute top-6 right-6 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                  className="h-8 w-8 lg:h-10 lg:w-10 text-[#DBC2A6]/50 absolute top-4 right-4 lg:top-6 lg:right-6 transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -187,14 +199,16 @@ const Portfolio = () => {
                     d="M10 4h8v8M18 4L6 18"
                   />
                 </svg>
-                <h3 className="text-[#DBC2A6] text-7xl italic">Get in touch</h3>
+                <h3 className="text-[#DBC2A6] text-5xl lg:text-7xl italic">
+                  Get in touch
+                </h3>
               </motion.div>
             </Link>
 
             {/* Social Links */}
             <motion.div
               variants={fromBottomVariants}
-              className="col-start-3 row-start-8 flex items-center justify-center gap-16 font-['Lato'] uppercase tracking-widest text-[#414A37] text-sm"
+              className="w-full lg:w-auto lg:col-start-3 lg:row-start-8 flex items-center justify-center gap-16 font-['Lato'] uppercase tracking-widest text-[#414A37] text-sm py-4 lg:py-0"
             >
               <a
                 href="https://github.com/mayank1980"
